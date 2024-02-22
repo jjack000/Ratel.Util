@@ -1,0 +1,38 @@
+﻿<Window x:Class="Ratel.Util.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ratel.Util"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Title="Message">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="messageText"
+                 Text="Hello world"
+                 Margin="10" Padding="10"
+                 TextWrapping="Wrap" 
+                 FontSize="20" FontWeight="Bold" BorderBrush="Black" IsReadOnly="True" 
+                 IsReadOnlyCaretVisible="False" 
+                 TextAlignment="Center"
+                 />
+        <Grid Grid.Row="1" Background="LightGray">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Width" Value="80"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="yesButton" Content="Yes" Click="YesButton_Click" Visibility="Collapsed"/>
+                <Button x:Name="noButton" Content="No" Click="NoButton_Click" Visibility="Collapsed"/>
+                <Button x:Name="okButton" Content="OK" Click="OkButton_Click"/>
+                <Button x:Name="cancelButton" Content="Cancel" IsCancel="True" Click="CancelButton_Click" Visibility="Collapsed"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
