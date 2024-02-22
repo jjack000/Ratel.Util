@@ -1,0 +1,269 @@
+﻿<Window x:Class="RatelMura.MuraConfigEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vision="clr-namespace:Ratel.Vision;assembly=Ratel.Vision"
+        xmlns:visionUI="clr-namespace:Ratel.Vision.WPF;assembly=Ratel.Vision"
+        xmlns:view="clr-namespace:RatelMura.Views"
+        xmlns:local="clr-namespace:RatelMura"
+        xmlns:mura="clr-namespace:Ratel.Vision.Mura;assembly=RatelTypes"
+        xmlns:grids="http://schemas.actiprosoftware.com/winfx/xaml/grids"
+     	xmlns:gridseditors="http://schemas.actiprosoftware.com/winfx/xaml/gridseditors"
+     mc:Ignorable="d"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        Title="MuraConfigEditWindow" Height="700" Width="1200">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="compareOptionEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="mura:CompareOption"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="averateMethodEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="mura:AverageMethod"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <!--<ObjectDataProvider x:Key="compareMethodEnum" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="mura:CompareMethod"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>-->
+        <Style TargetType="Control" x:Key="baseKey">
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+        <Style TargetType="RadioButton" BasedOn="{StaticResource baseKey}"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource baseKey}"/>
+
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="VisionDic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="305*"/>
+                <ColumnDefinition Width="298*"/>
+                <ColumnDefinition Width="597*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <GroupBox Header="Filter">
+                    <GroupBox.Resources>
+                        <mura:MuraConfig x:Key="_config"/>
+                    </GroupBox.Resources>
+                    <!--<grids:PropertyGrid Name="filterProertyGrid" DataObject="{StaticResource _config}"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ArePropertiesAutoExpanded="True"
+                                    />-->
+                    <StackPanel Name="filterProperty" 
+                                Margin="10"
+                                DataContext="{StaticResource _config}">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Width" Value="120"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Width" Value="100"/>
+                                <Setter Property="Margin" Value="0 1"/>
+                            </Style>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="Width" Value="100"/>
+                                <Setter Property="Margin" Value="0 1"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Filter Name"/>
+                            <TextBox Name="filterNameTextBox" Text="{Binding FilterName}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Average Method"/>
+                            <ComboBox Name="averageComboBox" 
+                                      ItemsSource="{Binding Source={StaticResource averateMethodEnum}}"
+                                      Text="{Binding AverageMethod}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Diff Count"/>
+                            <TextBox Name="diffCountTextBox" Text="{Binding DiffCount}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Filter Width"/>
+                            <TextBox Name="filterWidthTextBox" Text="{Binding SizeX}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Filter Height"/>
+                            <TextBox Name="filterHeightTextBox" Text="{Binding SizeY}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="BlackFactor"/>
+                            <TextBox Name="blackFactorTextBox" Text="{Binding BlackFactor}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="WhiteFactor"/>
+                            <TextBox Name="whiteFactorTextBox" Text="{Binding WhiteFactor}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Angle"/>
+                            <TextBox Name="angleTextBox" Text="{Binding Angle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="MinArea"/>
+                            <TextBox Name="minAreaTextBox" Text="{Binding MinArea}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <GroupBox Header="Defect Positions">
+                    <DataGrid  Name="defectPosList" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                           AutoGenerateColumns="False" CanUserAddRows="True" Height="100"
+                           SelectionChanged="defectPosList_SelectionChanged"
+                           >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="X" Binding="{Binding Path=X}" Width="60"/>
+                            <DataGridTextColumn Header="Y" Binding="{Binding Path=Y}" Width="60"/>
+                            <DataGridTextColumn Header="Level" Binding="{Binding Path=Level, StringFormat={}{0:N2}}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+                <GroupBox>
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Sur Points"/>
+                            <Button Width="15" Content="i" Margin="2 0" 
+                                    FontSize="8"
+                                    Height="15"
+                                    Click="ShowInformationButton_Click">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    
+                    <DataGrid  Name="surPosList" d:ItemsSource="{d:SampleData ItemCount=5}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                           AutoGenerateColumns="False" CanUserAddRows="True" Height="150" SelectionChanged="surPosList_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="X" Binding="{Binding Path=X}" Width="40"/>
+                            <DataGridTextColumn Header="Y" Binding="{Binding Path=Y}" Width="40"/>
+                            <DataGridComboBoxColumn Header="Compare Option" SelectedItemBinding="{Binding Path=CompareOption}" 
+                                             ItemsSource="{Binding Source={StaticResource compareOptionEnum}}" Width="60"/>
+                            <DataGridTextColumn Header="Percent" Binding="{Binding Path=Percent, StringFormat={}{0:N2}}" Width="50"/>
+                            <DataGridTextColumn Header="Level" Binding="{Binding Path=Level, StringFormat={}{0:N2}}" Width="40"/>
+                            <DataGridTextColumn Header="Diff" Binding="{Binding Path=DiffValue, StringFormat={}{0:N2}}" Width="40"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Level:" Margin="5 2 3 0"/>
+                    <TextBox Name="levelTextBox" Width="50" Text="{Binding Level, StringFormat={}{0:N2}}"/>
+                </StackPanel>
+                <Button Content="Draw" Click="Draw_Click" Margin="5"/>
+                <Button Content="Test" Click="TestButton_Click" Margin="5"/>
+                <GroupBox Header="Make New Fitler">
+                    <GroupBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Width" Value="60"/>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Margin" Value="0 1"/>
+                        </Style>
+                    </GroupBox.Resources>
+                    <StackPanel>
+                        <GroupBox Header="Filter Type">
+                            <UniformGrid Name="radioContainer" Columns="2" Rows="2">
+                                <RadioButton Content="Circle8" IsChecked="False" Checked="NewFilterType_Checked"/>
+                                <RadioButton Content="Circle4" IsChecked="True" Checked="NewFilterType_Checked"/>
+                                <RadioButton Content="Horizontal" Checked="NewFilterType_Checked"/>
+                                <RadioButton Content="Vertical" Checked="NewFilterType_Checked"/>
+                            </UniformGrid>
+                        </GroupBox>
+                        <GroupBox Header="Filter Info">
+                            <UniformGrid Columns="2" Rows="2" Margin="3 5">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="FilterX:"/>
+                                    <TextBox Name="newFilterWidth" Text="16"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="FilterY:"/>
+                                    <TextBox Name="newFilterHeight" Text="16"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Pitch:"/>
+                                    <TextBox Name="newFilterPitch" Text="1.2"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Percent:"/>
+                                    <TextBox Name="newFilterPercent" Text="1"/>
+                                </StackPanel>
+                            </UniformGrid>
+                        </GroupBox>
+                        <Button Content="Make New" Margin="5" Click="MakeNewFilterButton_Click"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!--<Canvas>
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0" CenterX="0" CenterY="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <Rectangle Width="8" Height="8" Fill="Gray" Canvas.Left="50" Canvas.Top="50">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45" CenterX="0" CenterY="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="8" Height="8" Fill="Gray" Canvas.Left="60" Canvas.Top="50">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45" CenterX="-10" CenterY="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                </Canvas>-->
+            </StackPanel>
+            <visionUI:RatelViewer Grid.Column="2" x:Name="viewer">
+            </visionUI:RatelViewer>
+            <view:HelpControl Grid.Column="2" x:Name="helpPage"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Width="100" Content="OK" IsDefault="True" Click="OkButton_Click"/>
+                <Button Width="100" Content="Cancel" IsCancel="True"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

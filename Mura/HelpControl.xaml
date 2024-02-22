@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="RatelMura.Views.HelpControl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RatelMura.Views"
+      mc:Ignorable="d" 
+     Background="White"
+      >
+
+    <StackPanel>
+        <FlowDocumentScrollViewer Grid.Column="2" Height="300"
+                                    Visibility="Visible">
+            <FlowDocument Background="White" FontFamily="맑은고딕">
+                <Paragraph >
+                    Compare
+                </Paragraph>
+                <Paragraph FontSize="11">
+                    각 Sub block 들이 불량 Block과 레벨과 비교하는 방법을 설정한다.
+                </Paragraph>
+                <Table FontSize="11" CellSpacing="0" BorderBrush="Black" BorderThickness="1 0 0 1">
+                    <Table.Resources>
+                        <Style TargetType="TableCell" x:Key="cellBase">
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="Padding" Value="5"/>
+                            <Setter Property="BorderThickness" Value="0 1 1 0"/>
+                        </Style>
+                        <Style TargetType="TableCell" BasedOn="{StaticResource cellBase}">
+                        </Style>
+                        <Style TargetType="TableCell" BasedOn="{StaticResource cellBase}" x:Key="cellHeader">
+                            <Setter Property="TextAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </Table.Resources>
+                    <Table.Columns>
+                        <TableColumn Width="100" Background="AntiqueWhite"/>
+                        <TableColumn Width="Auto" Background="AntiqueWhite"/>
+                    </Table.Columns>
+                    <TableRowGroup>
+                        <TableRow Background="AliceBlue">
+                            <TableCell Style="{StaticResource cellHeader}">
+                                <Paragraph>항목</Paragraph>
+                            </TableCell>
+                            <TableCell Style="{StaticResource cellHeader}">
+                                <Paragraph>설 명</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>Count</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>조건이 맞으면 Count한다.</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>MustCount</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>무조건 조건에 맞아야 하고 카운트에 포함시킨다.</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>MustNoCount</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>무조건 조건에 맞아야 하고 카운트에 포함시키지 않는다.</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph Margin="0 8 0 0">
+                                    NoCount
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph Margin="0 0 0 3">Count에 포함되지 않는다.</Paragraph>
+                                <Paragraph>평균 계산에만 사용된다.</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>MustNot</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>이 블럭은 무조건 조건을 만족하지 않아야함.</Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <Grid>
+            <Button Width="70" Margin="20 2" Click="Button_Click" HorizontalAlignment="Center">
+                닫기
+            </Button>
+
+        </Grid>
+    </StackPanel>
+</UserControl>
