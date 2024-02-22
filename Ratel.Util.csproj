@@ -15,13 +15,12 @@
     <Compile Update="ErrorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="IO\RGBLed.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MessageWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IO\" />
   </ItemGroup>
 
 </Project>
