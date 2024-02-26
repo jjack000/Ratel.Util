@@ -45,11 +45,11 @@ namespace Ratel.Util
         public static readonly DependencyProperty OnColorProperty =
             DependencyProperty.Register("OnColor", typeof(Color), typeof(Led), new PropertyMetadata(Colors.Green, OnColorChanged));
         public static readonly DependencyProperty OffColorProperty =
-            DependencyProperty.Register("OffColor", typeof(Color), typeof(Led), new PropertyMetadata(Colors.Black, OffColorChanged));
+            DependencyProperty.Register("OffColor", typeof(Color), typeof(Led), new PropertyMetadata(Colors.Gray, OffColorChanged));
         public static readonly DependencyProperty OnOpacityProperty =
             DependencyProperty.Register("OnOpacity", typeof(double), typeof(Led), new PropertyMetadata(1.0, OnOpacityChanged));
         public static readonly DependencyProperty OffOpacityProperty =
-            DependencyProperty.Register("OffOpacity", typeof(double), typeof(Led), new PropertyMetadata(0.3, OffOpacityChanged));
+            DependencyProperty.Register("OffOpacity", typeof(double), typeof(Led), new PropertyMetadata(1.0, OffOpacityChanged));
 
         public bool IsChecked { get => (bool)GetValue(IsCheckedProperty); set => SetValue(IsCheckedProperty, value); }
         public Color OnColor { get => (Color)GetValue(OnColorProperty); set => SetValue(OnColorProperty, value); }
