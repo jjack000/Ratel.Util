@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Open CV usings</Title>
+      <Author>RatelSoft</Author>
+      <Description>Insert usings to use opencv</Description>
+      <Shortcut>enddraw</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+// viewer의 event를 설정한다.
+viewer.EndDrawShape += (s, e) =>
+{
+    var pixelRes = Vars.Setup.CamSetups[selImage].PixelRes;
+    var shape = e.Shape;
+    if (shape is Rectangle rect)
+    {
+        var left = RatelViewer.GetLeft(rect);
+        var top = RatelViewer.GetTop(rect);
+        var right = RatelViewer.GetRight(rect);
+        var bottom = RatelViewer.GetBottom(rect);
+        var width = right - left;
+        var height = bottom - top;
+        log.Info($"ROI: {left}, {top}, {width} x {height}, ({width * pixelRes} x {height * pixelRes})mm");
+    }
+};
+]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>Number</ID>
+          <ToolTip>Choose the number you want the square root of.</ToolTip>
+          <Default>16</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Open CV usings</Title>
+      <Author>RatelSoft</Author>
+      <Description>Insert usings to use opencv</Description>
+      <Shortcut>dragdrop</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+// viewer 에 drag and drop을 설정한다.
+viewer.AllowDrop = true;
+viewer.Drop += Viewer_Drop;
+]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>Number</ID>
+          <ToolTip>Choose the number you want the square root of.</ToolTip>
+          <Default>16</Default>
+        </Literal>
+      </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
+
