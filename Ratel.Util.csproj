@@ -7,8 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ratel" Version="23.1229.0" />
-    <PackageReference Include="Ratel.Vision" Version="23.1229.0" />
+    <Compile Remove="Templates\App\App.xaml.cs" />
+    <Compile Remove="Templates\Lang\LangBase.cs" />
+    <Compile Remove="Templates\Lang\MainWindow_Lang.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Templates\Lang\LangBase.cs" />
+    <None Include="Templates\Lang\MainWindow_Lang.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CudaMura.Runtime" Version="24.320.0" />
+    <PackageReference Include="Ratel" Version="24.320.0" />
+    <PackageReference Include="Ratel.Vision" Version="24.320.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +33,10 @@
     <Compile Update="MessageWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Templates\App\" />
   </ItemGroup>
 
 </Project>

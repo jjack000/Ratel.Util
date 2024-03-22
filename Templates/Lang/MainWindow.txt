@@ -1,0 +1,7 @@
+﻿File	File	파일
+Language	Language	언어 변경
+Cascade	Cascade	계단식 구성
+Tile_Horizontal	Tile_Horizontal	가로 타일 구성
+Tile_Vertical	Tile_Vertical	세로 타일 구성
+Arrange_Icons	Arrange_Icons	아이콘 정렬
+Windows	Windows	창 설정
