@@ -19,8 +19,8 @@
 
   <ItemGroup>
     <PackageReference Include="CudaMura.Runtime" Version="24.320.0" />
-    <PackageReference Include="Ratel" Version="24.320.0" />
-    <PackageReference Include="Ratel.Vision" Version="24.320.0" />
+    <PackageReference Include="Ratel" Version="24.323.0" />
+    <PackageReference Include="Ratel.Vision" Version="24.323.0" />
   </ItemGroup>
 
   <ItemGroup>
