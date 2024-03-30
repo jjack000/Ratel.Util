@@ -10,6 +10,11 @@
     <Compile Remove="Templates\App\App.xaml.cs" />
     <Compile Remove="Templates\Lang\LangBase.cs" />
     <Compile Remove="Templates\Lang\MainWindow_Lang.cs" />
+    <Compile Remove="Templates\RRect.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\RRect.cs" />
   </ItemGroup>
 
   <ItemGroup>
