@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="IO\ModBusIo.cs" />
     <Compile Remove="Templates\App\App.xaml.cs" />
     <Compile Remove="Templates\Lang\LangBase.cs" />
     <Compile Remove="Templates\Lang\MainWindow_Lang.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="IO\ModBusIo.cs" />
     <None Include="Templates\Lang\LangBase.cs" />
     <None Include="Templates\Lang\MainWindow_Lang.cs" />
   </ItemGroup>
